@@ -1,0 +1,29 @@
+{% include "bootstrap/base.html" %}
+
+{% if name %}
+
+	Hello, {{name}}
+
+{% else %}
+
+	Hello, Stranger
+
+{%endif%}
+
+<p>Grade report for {{name}}:</p>
+<ul>
+{% for grade in grades %}
+	<li> {{grade}}: {{ grades[grade] }} </li>
+{% endfor %}
+</ul>
+
+{% macro render_dict(dict) %}
+	{% for key in dict %}
+	<li> {{ key }}: {{ dict[key] }} </li>
+	{% endfor %}
+{% endmacro %}
+
+<p> More efficient grade report for {{ name }} </p>
+<ul>
+	{{ render_dict(grades) }}
+</ul>
