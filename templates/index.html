@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% macro render_dict(dict) %}
+	{% for key in dict %}
+		<li>{{key}}: {{dict[key]}}</li>
+	{% endfor %}
+{% endmacro %}
+
+{% block page_content %}
+<div class="page-header">
+	<h1>Hello {% if name %} {{name}} {% else %} Stranger {% endif %}!</h1>
+</div>
+
+{% if session %}
+<ul>
+	{{ render_dict(session) }}
+</ul>
+{% endif %}
+
+{% if pw %}
+<div class="page-header">
+	
+	<p>Your password was {{pw}}</p>
+	
+</div>
+{% endif %}
+
+{{ wtf.quick_form(form) }}
+{% endblock %}
